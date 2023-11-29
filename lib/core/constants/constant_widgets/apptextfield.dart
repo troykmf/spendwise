@@ -57,19 +57,48 @@ class AppTextField extends StatelessWidget {
 class AppCustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
-  const AppCustomTextField(
-      {super.key, required this.controller, required this.hintText});
+  final TextInputType textInputType;
+  final bool autoFocus;
+  final bool obscureText;
+  final bool autoCorrect;
+  final Function(String)? onChnaged;
+  final Function()? onTap;
+  final TextStyle? style;
+  final int? maxlines;
+  final int? minlines;
+  final int? maxLength;
+  const AppCustomTextField({
+    super.key,
+    required this.controller,
+    required this.hintText,
+    required this.textInputType,
+    required this.autoFocus,
+    required this.obscureText,
+    required this.autoCorrect,
+    this.onChnaged,
+    this.onTap,
+    this.style,
+    this.maxlines,
+    this.minlines,
+    this.maxLength,
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      keyboardType: TextInputType.emailAddress,
+      autofocus: autoFocus,
+      obscureText: obscureText,
+      autocorrect: autoCorrect,
+      maxLines: maxlines,
+      minLines: minlines,
+      maxLength: maxLength,
+      keyboardType: textInputType,
       controller: controller,
       decoration: InputDecoration(
         hintStyle: const TextStyle(
           color: Colors.black,
         ),
-        contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+        contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.0),
           // borderSide: BorderSide(color: Colors.grey.shade50),

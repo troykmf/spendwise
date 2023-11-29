@@ -163,6 +163,7 @@ class _FabPageState extends State<FabPage> {
     _tag.dispose();
     _when.dispose();
     _note.dispose();
+    _deleteTransactionDetailIfTextIsEmpty();
     super.dispose();
   }
 
@@ -181,87 +182,77 @@ class _FabPageState extends State<FabPage> {
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: () {},
-      //   label: const Row(
-      //     children: [
-      //       Icon(
-      //         Icons.create_outlined,
-      //       ),
-      //       Text('Edit'),
-      //     ],
-      //   ),
-      // ),
       body: FutureBuilder(
         future: createOrGetExistingCategory(context),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               _setupTextControllerListener();
-              return ListView(
-                children: [
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    controller: _title,
-                    decoration: InputDecoration(
-                      hintStyle: const TextStyle(
-                        color: Colors.black,
+              return SizedBox(
+                height: double.maxFinite,
+                width: double.maxFinite,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 12.0),
+                      AppCustomTextField(
+                        autoFocus: true,
+                        obscureText: false,
+                        autoCorrect: true,
+                        controller: _title,
+                        hintText: 'Title',
+                        textInputType: TextInputType.text,
                       ),
-                      contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        // borderSide: BorderSide(color: Colors.grey.shade50),
+                      const SizedBox(height: 12.0),
+                      AppCustomTextField(
+                        autoFocus: false,
+                        obscureText: false,
+                        autoCorrect: false,
+                        controller: _amount,
+                        hintText: 'Enter Amount',
+                        textInputType: TextInputType.number,
                       ),
-                      alignLabelWithHint: false,
-                      hintText: 'Title',
-                    ),
+                      const SizedBox(height: 12.0),
+                      AppCustomTextField(
+                        autoFocus: false,
+                        obscureText: false,
+                        autoCorrect: true,
+                        controller: _transactonType,
+                        hintText: 'Enter a Tranaction Type',
+                        textInputType: TextInputType.text,
+                      ),
+                      const SizedBox(height: 12.0),
+                      AppCustomTextField(
+                        autoFocus: false,
+                        obscureText: false,
+                        autoCorrect: true,
+                        controller: _when,
+                        hintText: 'Enter your desired date',
+                        textInputType: TextInputType.text,
+                      ),
+                      const SizedBox(height: 12.0),
+                      AppCustomTextField(
+                        autoFocus: false,
+                        obscureText: false,
+                        autoCorrect: true,
+                        controller: _note,
+                        hintText: 'Note',
+                        textInputType: TextInputType.text,
+                      ),
+                      const SizedBox(height: 12.0),
+                      AppTextField(
+                        controller: _note,
+                        hintText: 'Note',
+                        labelText: 'Note',
+                        textInputType: TextInputType.text,
+                        autoFocus: false,
+                        obscureText: false,
+                        autoCorrect: true,
+                      ),
+                      const SizedBox(height: 12.0),
+                    ],
                   ),
-                  AppTextField(
-                    controller: _amount,
-                    hintText: 'Enter Amount',
-                    labelText: 'Amount',
-                    textInputType: TextInputType.number,
-                    autoFocus: false,
-                    obscureText: false,
-                    autoCorrect: true,
-                  ),
-                  AppTextField(
-                    controller: _transactonType,
-                    hintText: 'Enter a Tranaction Type',
-                    labelText: 'Transaction Type',
-                    textInputType: TextInputType.text,
-                    autoFocus: false,
-                    obscureText: false,
-                    autoCorrect: true,
-                  ),
-                  AppTextField(
-                    controller: _tag,
-                    hintText: 'Tag',
-                    labelText: 'Tag',
-                    textInputType: TextInputType.text,
-                    autoFocus: false,
-                    obscureText: false,
-                    autoCorrect: true,
-                  ),
-                  AppTextField(
-                    controller: _when,
-                    hintText: 'Enter your desired date',
-                    labelText: 'When',
-                    textInputType: TextInputType.text,
-                    autoFocus: false,
-                    obscureText: false,
-                    autoCorrect: true,
-                  ),
-                  AppTextField(
-                    controller: _note,
-                    hintText: 'Note',
-                    labelText: 'Note',
-                    textInputType: TextInputType.text,
-                    autoFocus: false,
-                    obscureText: false,
-                    autoCorrect: true,
-                  ),
-                ],
+                ),
               );
             default:
               const CircularProgressIndicator();

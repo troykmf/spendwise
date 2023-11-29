@@ -174,14 +174,22 @@ class _BudgetTwoFabPageState extends State<BudgetTwoFabPage> {
                         child: AppCustomTextField(
                           controller: _budgetTitle,
                           hintText: 'Title',
+                          textInputType: TextInputType.text,
+                          autoFocus: true,
+                          obscureText: false,
+                          autoCorrect: true,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 12),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: AppCustomTextField(
+                          autoFocus: false,
+                          obscureText: false,
+                          autoCorrect: true,
                           controller: _budgetAmount,
                           hintText: 'Amount',
+                          textInputType: TextInputType.number,
                         ),
                       ),
                       const SizedBox(height: 10),

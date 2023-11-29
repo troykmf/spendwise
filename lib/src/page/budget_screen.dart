@@ -41,83 +41,94 @@ class _BudgetScreenState extends State<BudgetScreen> {
         title: const Text('BudgetScreen'),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            AppCustomTextField(
-              controller: titleController,
-              hintText: 'Ttitle',
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            AppCustomTextField(
-              controller: amountController,
-              hintText: 'Amount',
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            AppButton(
-              onTap: () {
-                gotBudget();
-              },
-              text: 'Add Budget',
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            StreamBuilder(
-              stream: budgetDatabase.getBudgetStream(),
-              builder: (context, snapshot) {
-                // show loading
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Text('Waiting for data');
-                }
-                // get the budgets
-                final budget = snapshot.data!.docs;
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 16.0),
+          child: Column(
+            children: [
+              AppCustomTextField(
+                controller: titleController,
+                hintText: 'Ttitle',
+                textInputType: TextInputType.text,
+                autoFocus: true,
+                obscureText: false,
+                autoCorrect: true,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              AppCustomTextField(
+                controller: amountController,
+                hintText: 'Amount',
+                textInputType: TextInputType.number,
+                autoCorrect: false,
+                autoFocus: false,
+                obscureText: false,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              AppButton(
+                onTap: () {
+                  gotBudget();
+                },
+                text: 'Add Budget',
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              StreamBuilder(
+                stream: budgetDatabase.getBudgetStream(),
+                builder: (context, snapshot) {
+                  // show loading
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Text('Waiting for data');
+                  }
+                  // get the budgets
+                  final budget = snapshot.data!.docs;
 
-                // no data
-                if (snapshot.data == null || budget.isEmpty) {
-                  return const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(25),
-                      child: Text('No Data'),
-                    ),
-                  );
-                }
+                  // no data
+                  if (snapshot.data == null || budget.isEmpty) {
+                    return const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(25),
+                        child: Text('No Data'),
+                      ),
+                    );
+                  }
 
-                // return a list
-                if (snapshot.hasData) {
-                  return Expanded(
-                    child: ListView.builder(
-                      itemCount: budget.length,
-                      itemBuilder: (context, index) {
-                        // get the individual post
-                        final budgets = budget[index];
+                  // return a list
+                  if (snapshot.hasData) {
+                    return Expanded(
+                      child: ListView.builder(
+                        itemCount: budget.length,
+                        itemBuilder: (context, index) {
+                          // get the individual post
+                          final budgets = budget[index];
 
-                        // get the data
-                        String bTtitle = budgets['title'];
-                        int bAmount = budgets['amount'];
-                        DateTime bDate = budgets['date'];
+                          // get the data
+                          String bTtitle = budgets['title'];
+                          int bAmount = budgets['amount'];
+                          DateTime bDate = budgets['date'];
 
-                        // return as a list tile
-                        return Card(
-                          elevation: 3.0,
-                          color: Colors.grey.shade300,
-                          child: ListTile(
-                            title: Text(bTtitle),
-                            subtitle: Text(bAmount.toString()),
-                            trailing: Text(bDate.toString()),
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                }
-                return const CircularProgressIndicator();
-              },
-            )
-          ],
+                          // return as a list tile
+                          return Card(
+                            elevation: 3.0,
+                            color: Colors.grey.shade300,
+                            child: ListTile(
+                              title: Text(bTtitle),
+                              subtitle: Text(bAmount.toString()),
+                              trailing: Text(bDate.toString()),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  }
+                  return const CircularProgressIndicator();
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

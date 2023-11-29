@@ -93,42 +93,65 @@ class _ExpenseFabPageState extends State<ExpenseFabPage> {
       //   child: const Text('Save'),
       // ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            AppCustomTextField(
-              controller: _titleController,
-              hintText: 'e.g Bags',
-            ),
-            const SizedBox(height: 15),
-            AppCustomTextField(
-              controller: _amountController,
-              hintText: 'Enter expense',
-            ),
-            const SizedBox(height: 15),
-            AppCustomTextField(
-              controller: _transactionTypeController,
-              hintText: 'Enter expense',
-            ),
-            const SizedBox(height: 15),
-            AppCustomTextField(
-              controller: _tagController,
-              hintText: 'Enter expense',
-            ),
-            const SizedBox(height: 15),
-            AppCustomTextField(
-              controller: _noteController,
-              hintText: 'Enter expense',
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            AppButton(
-              onTap: () {
-                save();
-              },
-              text: 'Save',
-            )
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Column(
+            children: [
+              AppCustomTextField(
+                autoFocus: true,
+                obscureText: false,
+                autoCorrect: true,
+                controller: _titleController,
+                hintText: 'e.g Bags',
+                textInputType: TextInputType.text,
+              ),
+              const SizedBox(height: 15),
+              AppCustomTextField(
+                autoFocus: false,
+                obscureText: false,
+                autoCorrect: true,
+                controller: _amountController,
+                hintText: 'Enter expense',
+                textInputType: TextInputType.number,
+              ),
+              const SizedBox(height: 15),
+              AppCustomTextField(
+                autoFocus: false,
+                obscureText: false,
+                autoCorrect: true,
+                controller: _transactionTypeController,
+                hintText: 'Enter expense',
+                textInputType: TextInputType.text,
+              ),
+              const SizedBox(height: 15),
+              AppCustomTextField(
+                autoFocus: false,
+                obscureText: false,
+                autoCorrect: true,
+                controller: _tagController,
+                hintText: 'Enter expense',
+                textInputType: TextInputType.text,
+              ),
+              const SizedBox(height: 15),
+              AppCustomTextField(
+                autoFocus: false,
+                obscureText: false,
+                autoCorrect: true,
+                controller: _noteController,
+                hintText: 'Enter expense',
+                textInputType: TextInputType.text,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              AppButton(
+                onTap: () {
+                  save();
+                },
+                text: 'Save',
+              )
+            ],
+          ),
         ),
       ),
     );

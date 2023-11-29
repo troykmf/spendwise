@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:spendwise/services/budget_firebase/budget_item_two.dart';
 import 'package:spendwise/core/constants/budget_amount.dart';
 import 'package:spendwise/core/constants/route.dart';
 import 'package:spendwise/services/models/budgets/budget_data.dart';
@@ -26,24 +25,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  CloudBudgetItemTwo? _db;
-
   final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
 
   String get userId => AuthService.firebase().currentUser!.id;
 
   void deleteBudget(BudgetItem budget) {
     Provider.of<BudgetData>(context, listen: false).deleteBudget(budget);
-  }
-
-  int getTotoal() {
-    final value = _db;
-    int total = 0;
-    List<int> values = [value?.amount ?? 0];
-    for (int i = 0; i < values.length; i++) {
-      total += values[i];
-    }
-    return total;
   }
 
   // final TabController tabController =
@@ -310,9 +297,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                         height: 100,
                         width: 150,
-                        child: Stack(
+                        child: const Stack(
                           children: [
-                            const Positioned(
+                            Positioned(
                               right: 5,
                               top: 5,
                               child: CircleAvatar(
@@ -331,14 +318,14 @@ class _HomePageState extends State<HomePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'TOTAL EXPENSE',
                                     style: TextStyle(fontSize: 10),
                                   ),
-                                  const SizedBox(height: 10),
+                                  SizedBox(height: 10),
                                   Text(
-                                    getTotoal().toString(),
-                                    style: const TextStyle(
+                                    '0.0',
+                                    style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -357,7 +344,7 @@ class _HomePageState extends State<HomePage> {
                     Tab(
                       icon: Icon(
                         Icons.home,
-                        color: Colors.blue,
+                        color: Colors.black,
                       ),
                     ),
                     // Tab(
@@ -368,7 +355,7 @@ class _HomePageState extends State<HomePage> {
                     // ),
                     Tab(
                       icon: Icon(
-                        Icons.settings,
+                        Icons.money,
                         color: Colors.blue,
                       ),
                     )
@@ -383,41 +370,39 @@ class _HomePageState extends State<HomePage> {
                       ExpenseTab(userId: userId),
 
                       // 2nd tab
-                      // const Padding(
-                      //   padding: EdgeInsets.only(left: 8.0),
-                      //   child: Text('Recent Budget Transaction'),
-                      // ),
-                      // Consumer<BudgetData>(
-                      //   builder: (context, value, child) {
-                      //     return ListView.builder(
-                      //       itemCount: value.getAllBudgetItemList().length,
-                      //       itemBuilder: (context, index) {
-                      //         return SizedBox(
-                      //           child: BudgetTile(
-                      //             name:
-                      //                 value.getAllBudgetItemList()[index].title,
-                      //             amount: value
-                      //                 .getAllBudgetItemList()[index]
-                      //                 .amount,
-                      //             dateTime: value
-                      //                 .getAllBudgetItemList()[index]
-                      //                 .datetime,
-                      //             deleteTapped: (p0) {
-                      //               deleteBudget(
-                      //                   value.getAllBudgetItemList()[index]);
-                      //             },
-                      //           ),
-                      //         );
-                      //       },
-                      //     );
-                      //   },
-                      // ),
-
-                      // 3rd tab
                       BudgetTab(userId: userId)
                     ],
                   ),
                 ),
+                // const Padding(
+                //   padding: EdgeInsets.only(left: 8.0),
+                //   child: Text('Recent Budget Transaction'),
+                // ),
+                // Consumer<BudgetData>(
+                //   builder: (context, value, child) {
+                //     return ListView.builder(
+                //       itemCount: value.getAllBudgetItemList().length,
+                //       itemBuilder: (context, index) {
+                //         return SizedBox(
+                //           child: BudgetTile(
+                //             name:
+                //                 value.getAllBudgetItemList()[index].title,
+                //             amount: value
+                //                 .getAllBudgetItemList()[index]
+                //                 .amount,
+                //             dateTime: value
+                //                 .getAllBudgetItemList()[index]
+                //                 .datetime,
+                //             deleteTapped: (p0) {
+                //               deleteBudget(
+                //                   value.getAllBudgetItemList()[index]);
+                //             },
+                //           ),
+                //         );
+                //       },
+                //     );
+                //   },
+                // ),
               ],
             ),
           ),
