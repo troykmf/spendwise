@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "912078112543",
+    "project_id": "spendwise-c0a4a",
+    "storage_bucket": "spendwise-c0a4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912078112543:android:4ccc6a844eb83d9c67d22a",
+        "android_client_info": {
+          "package_name": "com.example.spend_wise"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912078112543-vnkfa6ive7rc3k1ngachuvofumucehcj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcNWbCZHyxwSDW4xtRFPL_L8nA9yj-j2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912078112543-vnkfa6ive7rc3k1ngachuvofumucehcj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "912078112543-n20su1fnlmg319rl506o6dnehdfv702e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.spendwise"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912078112543:android:28fadab6fd269c6f67d22a",
+        "android_client_info": {
+          "package_name": "com.example.spendwise"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912078112543-vnkfa6ive7rc3k1ngachuvofumucehcj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcNWbCZHyxwSDW4xtRFPL_L8nA9yj-j2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912078112543-vnkfa6ive7rc3k1ngachuvofumucehcj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "912078112543-n20su1fnlmg319rl506o6dnehdfv702e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.spendwise"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
