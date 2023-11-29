@@ -131,6 +131,9 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(
+                  height: 20.0,
+                ),
                 IconButton(
                   onPressed: () {
                     _closeEndDrawer();
@@ -140,6 +143,15 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.white,
                     size: 30.0,
                   ),
+                ),
+                const SizedBox(
+                  height: 20.0,
+                ),
+                AppButton(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(summaryRoute);
+                  },
+                  text: 'Summary Page',
                 ),
                 const SizedBox(height: 50),
                 Center(
@@ -362,7 +374,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   SizedBox(height: 10),
                                   Text(
-                                    '0.0',
+                                    '#0.00',
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,

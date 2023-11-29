@@ -12,7 +12,16 @@ class SummaryPage extends StatelessWidget {
       builder: (context, value, child) {
         return Scaffold(
           body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: Icon(
+                  Icons.arrow_back,
+                ),
+              ),
               BudgetSummary(
                 startOfWeek: value.startOfWeek(),
               ),
