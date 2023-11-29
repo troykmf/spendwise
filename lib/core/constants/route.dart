@@ -8,3 +8,4 @@ const summaryRoute = '/summary/';
 const forgotPasswordRoute = '/forgot_password/';
 const budgetTwoFabRoute = '/budget_two_fab/';
 const splashRoute = '/splash/';
+const homeMainRoute = '/home_main/';

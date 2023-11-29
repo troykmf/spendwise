@@ -74,6 +74,7 @@ class MyApp extends StatelessWidget {
           forgotPasswordRoute: (context) => const ForgotPasswordPage(),
           budgetTwoFabRoute: (context) => const BudgetTwoFabPage(),
           splashRoute: (context) => const SplashPage(),
+          homeMainRoute: (context) => const HomeMain(),
         },
         home: const HomeMain(),
       ),
