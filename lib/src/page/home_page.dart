@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:spendwise/core/constants/budget_amount.dart';
+import 'package:spendwise/core/constants/constant_widgets/apptextfield.dart';
 import 'package:spendwise/core/constants/route.dart';
 import 'package:spendwise/services/models/budgets/budget_data.dart';
 import 'package:spendwise/services/models/budgets/budget_item.dart';
@@ -25,7 +26,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
+  final GlobalKey<FabCircularMenuState> fabKey =
+      GlobalKey<FabCircularMenuState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void _openEndDrawer() {
+    _scaffoldKey.currentState!.openEndDrawer();
+  }
+
+  void _closeEndDrawer() {
+    Navigator.of(context).pop();
+  }
 
   String get userId => AuthService.firebase().currentUser!.id;
 
@@ -47,6 +58,7 @@ class _HomePageState extends State<HomePage> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        key: _scaffoldKey,
         backgroundColor: Colors.grey.shade50,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: Builder(
@@ -111,15 +123,29 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         drawerDragStartBehavior: DragStartBehavior.down,
-        drawer: Drawer(
+        endDrawer: Drawer(
           backgroundColor: Colors.black,
           width: 230.0,
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  ElevatedButton(
-                    onPressed: () async {
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    _closeEndDrawer();
+                  },
+                  icon: const Icon(
+                    Icons.cancel_outlined,
+                    color: Colors.white,
+                    size: 30.0,
+                  ),
+                ),
+                const SizedBox(height: 50),
+                Center(
+                  child: AppButton(
+                    onTap: () async {
+                      // await logoutDialog(context, 'Logout', () => null);
                       try {
                         await AuthService.firebase().logOut();
                         Navigator.of(context).pushNamedAndRemoveUntil(
@@ -131,26 +157,38 @@ class _HomePageState extends State<HomePage> {
                           context,
                           'User not logged in',
                         );
+                      } catch (_) {
+                        throw GenericAuthException();
                       }
                     },
-                    child: const Text(
-                      'Log out',
-                      style: TextStyle(
-                        color: Colors.blue,
-                      ),
-                    ),
+                    text: 'Logout',
                   ),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      icon: const Icon(
-                        Icons.cancel_outlined,
-                        size: 30.0,
-                      ))
-                ],
-              ),
-            ],
+
+                  // ElevatedButton(
+                  //   onPressed: () async {
+                  //     try {
+                  //       await AuthService.firebase().logOut();
+                  //       Navigator.of(context).pushNamedAndRemoveUntil(
+                  //         loginRoute,
+                  //         (route) => false,
+                  //       );
+                  //     } on UserNotLoggedInAuthException {
+                  //       await showErrorDialog(
+                  //         context,
+                  //         'User not logged in',
+                  //       );
+                  //     }
+                  //   },
+                  //   child: const Text(
+                  //     'Log out',
+                  //     style: TextStyle(
+                  //       color: Colors.blue,
+                  //     ),
+                  //   ),
+                  // ),
+                ),
+              ],
+            ),
           ),
         ),
         body: SafeArea(
@@ -193,8 +231,8 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           IconButton(
-                            onPressed: () async {
-                              await logoutDialog(context, 'Logout', () => {});
+                            onPressed: () {
+                              _openEndDrawer();
                             },
                             icon: const Icon(
                               Icons.menu,
@@ -356,7 +394,7 @@ class _HomePageState extends State<HomePage> {
                     Tab(
                       icon: Icon(
                         Icons.money,
-                        color: Colors.blue,
+                        color: Colors.black,
                       ),
                     )
                   ],

@@ -14,7 +14,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     Timer(
-      const Duration(seconds: 4),
+      const Duration(seconds: 10),
       () => Navigator.of(context).pushNamedAndRemoveUntil(
         signupRoute,
         (route) => false,
@@ -26,17 +26,17 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomRight,
-            colors: [AppColor.whiteColor, AppColor.blueColor],
-          ),
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomRight,
+          colors: [AppColor.whiteColor, AppColor.blueColor],
         ),
+      ),
+      child: Center(
         child: Image.network(
           'https://img.freepik.com/free-vector/pay-balance-owed-abstract-concept-illustration-making-credit-payment-pay-owed-money-bank-irs-balance-due-debt-consolidation-management-taxpayer-bill_335657-1236.jpg?size=626&ext=jpg&ga=GA1.1.236206376.1670018423&semt=ais',
         ),

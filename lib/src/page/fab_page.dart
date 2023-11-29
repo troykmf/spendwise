@@ -163,6 +163,7 @@ class _FabPageState extends State<FabPage> {
     _tag.dispose();
     _when.dispose();
     _note.dispose();
+    _saveExpenseIfNotEmpty();
     _deleteTransactionDetailIfTextIsEmpty();
     super.dispose();
   }
@@ -192,65 +193,58 @@ class _FabPageState extends State<FabPage> {
                 height: double.maxFinite,
                 width: double.maxFinite,
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 12.0),
-                      AppCustomTextField(
-                        autoFocus: true,
-                        obscureText: false,
-                        autoCorrect: true,
-                        controller: _title,
-                        hintText: 'Title',
-                        textInputType: TextInputType.text,
-                      ),
-                      const SizedBox(height: 12.0),
-                      AppCustomTextField(
-                        autoFocus: false,
-                        obscureText: false,
-                        autoCorrect: false,
-                        controller: _amount,
-                        hintText: 'Enter Amount',
-                        textInputType: TextInputType.number,
-                      ),
-                      const SizedBox(height: 12.0),
-                      AppCustomTextField(
-                        autoFocus: false,
-                        obscureText: false,
-                        autoCorrect: true,
-                        controller: _transactonType,
-                        hintText: 'Enter a Tranaction Type',
-                        textInputType: TextInputType.text,
-                      ),
-                      const SizedBox(height: 12.0),
-                      AppCustomTextField(
-                        autoFocus: false,
-                        obscureText: false,
-                        autoCorrect: true,
-                        controller: _when,
-                        hintText: 'Enter your desired date',
-                        textInputType: TextInputType.text,
-                      ),
-                      const SizedBox(height: 12.0),
-                      AppCustomTextField(
-                        autoFocus: false,
-                        obscureText: false,
-                        autoCorrect: true,
-                        controller: _note,
-                        hintText: 'Note',
-                        textInputType: TextInputType.text,
-                      ),
-                      const SizedBox(height: 12.0),
-                      AppTextField(
-                        controller: _note,
-                        hintText: 'Note',
-                        labelText: 'Note',
-                        textInputType: TextInputType.text,
-                        autoFocus: false,
-                        obscureText: false,
-                        autoCorrect: true,
-                      ),
-                      const SizedBox(height: 12.0),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 12.0),
+                        AppCustomTextField(
+                          autoFocus: true,
+                          obscureText: false,
+                          autoCorrect: true,
+                          controller: _title,
+                          hintText: 'Title',
+                          textInputType: TextInputType.text,
+                        ),
+                        const SizedBox(height: 12.0),
+                        AppCustomTextField(
+                          autoFocus: false,
+                          obscureText: false,
+                          autoCorrect: false,
+                          controller: _amount,
+                          hintText: 'Enter Amount',
+                          textInputType: TextInputType.number,
+                        ),
+                        const SizedBox(height: 12.0),
+                        AppCustomTextField(
+                          autoFocus: false,
+                          obscureText: false,
+                          autoCorrect: true,
+                          controller: _transactonType,
+                          hintText: 'Enter a Tranaction Type',
+                          textInputType: TextInputType.text,
+                        ),
+                        const SizedBox(height: 12.0),
+                        AppCustomTextField(
+                          autoFocus: false,
+                          obscureText: false,
+                          autoCorrect: true,
+                          controller: _when,
+                          hintText: 'Enter your desired date',
+                          textInputType: TextInputType.text,
+                        ),
+                        const SizedBox(height: 12.0),
+                        AppCustomTextField(
+                          autoFocus: false,
+                          obscureText: false,
+                          autoCorrect: true,
+                          controller: _note,
+                          hintText: 'Write a note',
+                          textInputType: TextInputType.text,
+                        ),
+                        const SizedBox(height: 12.0),
+                      ],
+                    ),
                   ),
                 ),
               );

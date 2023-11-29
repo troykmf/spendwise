@@ -33,7 +33,7 @@ void main() async {
   await FirebasePushNotificationApi().initNotification();
 
   SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.white));
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
   runApp(const MyApp());
 }
@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
           budgetTwoFabRoute: (context) => const BudgetTwoFabPage(),
           splashRoute: (context) => const SplashPage(),
         },
-        home: const SplashPage(),
+        home: const HomeMain(),
       ),
     );
 
