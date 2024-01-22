@@ -131,7 +131,9 @@ class _LoginPageState extends State<LoginPage> {
                       height: 10.0,
                     ),
                     TextField(
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.text,
+                      obscureText: true,
+                      obscuringCharacter: '*',
                       controller: _password,
                       decoration: InputDecoration(
                         hintStyle: const TextStyle(
@@ -181,7 +183,8 @@ class _LoginPageState extends State<LoginPage> {
                     final user = AuthService.firebase().currentUser;
                     if (user?.isEmailVerified ?? false) {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        homeRoute,
+                        // homeRoute
+                        bottomNavigationRoute,
                         (route) => false,
                       );
                     } else {

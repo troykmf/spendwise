@@ -1,43 +1,18 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:flutter/material.dart';
-// import 'package:spendwise/budget_firebase/budget_item_two.dart';
-// import 'package:spendwise/constants/date_time_helper.dart';
+// import 'package:spendwise/services/auth/auth_service.dart';
 
-// class BudgetItemTwoAmount extends StatelessWidget {
-//   const BudgetItemTwoAmount({super.key});
+// class Db {
+//   CollectionReference users =
+//       FirebaseFirestore.instance.collection('BudgetTwo');
+//   final userId = AuthService.firebase().currentUser!.id;
 
-//   Map<String, double> calculateDailyBudgetSummary() {
-//     Map<String, double> dailyBudgetSummary = {};
-//     List<CloudBudgetItemTwo> value = [];
-
-//     for (var budget in value) {
-//       String date = convertDateTimeToString(budget.dateTime.toDate());
-//       int amount = budget.amount;
-
-//       if (dailyBudgetSummary.containsKey(date)) {
-//         double currentAmount = dailyBudgetSummary[date]!;
-//         currentAmount += amount;
-//         dailyBudgetSummary[date] = currentAmount;
-//       } else {
-//         dailyBudgetSummary.addAll({date: double.parse(amount.toString())});
-//       }
-//     }
-//     return dailyBudgetSummary;
-//   }
-
-//   String calculateDaysTotal({required final CloudBudgetItemTwo value}) {
-//     List<int> values = [
-//       value.amount,
-//     ];
-//     int total = 0;
-//     for (int i = 0; i < values.length; i++) {
-//       total += values[i];
-//     }
-//     return total.toStringAsFixed(3);
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Text('#$calculateDaysTotal()');
+//   Future<void> addData() async {
+//     await users.doc(userId).set({
+//       'title': '',
+//       'amount': 0,
+//     }).then((value) => null)
 //   }
 // }
+
+

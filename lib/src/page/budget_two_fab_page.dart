@@ -21,12 +21,18 @@ class _BudgetTwoFabPageState extends State<BudgetTwoFabPage> {
   late final TextEditingController _budgetAmount;
   String selectedItem = 'Clothes';
   final dropList = [
-    'Clothes',
-    'Shoes',
-    'Food',
+    'General',
+    'Clothes and Shoes',
+    'Food and Drink',
+    'Home',
+    'Health',
+    'Lifestyle',
     'Vacation',
     'Transportation',
-    'Others'
+    'Bills',
+    'Business',
+    'Shopping',
+    'Others Expenses',
   ];
 
   @override
@@ -44,7 +50,6 @@ class _BudgetTwoFabPageState extends State<BudgetTwoFabPage> {
   //   final title = _budgetTitle.text;
   //   final amount = _budgetAmount.text;
   //   final selectDropItem = selectedItem;
-
   //   await _budgetStorageTwoService.updateBudgetTwo(
   //     budgetDocumentId: budgetDatabase.documnetId,
   //     title: title,
@@ -52,11 +57,9 @@ class _BudgetTwoFabPageState extends State<BudgetTwoFabPage> {
   //     dropItem: selectDropItem,
   //   );
   // }
-
   // void _setupTextControllerListener() {
   //   _budgetTitle.removeListener(_textControllerListener);
   //   _budgetTitle.addListener(_textControllerListener);
-
   //   _budgetAmount.removeListener(_textControllerListener);
   //   _budgetAmount.addListener(_textControllerListener);
   // }
@@ -168,7 +171,11 @@ class _BudgetTwoFabPageState extends State<BudgetTwoFabPage> {
                         },
                         icon: const Icon(Icons.arrow_back),
                       ),
+
                       const SizedBox(height: 10),
+
+                      // title textfield
+
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: AppCustomTextField(
@@ -180,7 +187,11 @@ class _BudgetTwoFabPageState extends State<BudgetTwoFabPage> {
                           autoCorrect: true,
                         ),
                       ),
+
                       const SizedBox(height: 12),
+
+                      // amount textfield
+
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: AppCustomTextField(
@@ -192,7 +203,10 @@ class _BudgetTwoFabPageState extends State<BudgetTwoFabPage> {
                           textInputType: TextInputType.number,
                         ),
                       ),
+
                       const SizedBox(height: 10),
+
+                      // dropdown button
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: DropdownButton(
@@ -207,9 +221,11 @@ class _BudgetTwoFabPageState extends State<BudgetTwoFabPage> {
                                 )
                                 .toList(),
                             onChanged: (String? newValue) {
-                              setState(() {
-                                selectedItem = newValue!;
-                              });
+                              if (newValue != null) {
+                                setState(() {
+                                  selectedItem = newValue;
+                                });
+                              }
                             }),
                       ),
                       const SizedBox(height: 30),

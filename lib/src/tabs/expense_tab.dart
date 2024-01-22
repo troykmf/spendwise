@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spendwise/services/cloud_database/cloud_storage.dart';
 import 'package:spendwise/services/cloud_database/firebase_cloud_storage.dart';
 import 'package:spendwise/core/constants/route.dart';
-import 'package:spendwise/src/transaction_details/transaction_detail_listview.dart';
+import 'package:spendwise/src/listview_bulder/transaction_detail_listview.dart';
 
 class ExpenseTab extends StatelessWidget {
   ExpenseTab({super.key, required this.userId});

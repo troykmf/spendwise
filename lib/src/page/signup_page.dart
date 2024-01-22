@@ -14,11 +14,15 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   late final TextEditingController _email;
   late final TextEditingController _password;
+  late final TextEditingController _userName;
+  late final TextEditingController _phone;
 
   @override
   void initState() {
     _email = TextEditingController();
     _password = TextEditingController();
+    _userName = TextEditingController();
+    _phone = TextEditingController();
     super.initState();
   }
 
@@ -26,7 +30,17 @@ class _SignUpPageState extends State<SignUpPage> {
   void dispose() {
     _email.dispose();
     _password.dispose();
+    _phone.dispose();
+    _userName.dispose();
     super.dispose();
+  }
+
+  Future<void> _submitForm() async {
+    var data = {
+      'userName': _userName.text,
+      'email': _email.text,
+      'phone': _phone.text,
+    };
   }
 
   @override
@@ -88,6 +102,78 @@ class _SignUpPageState extends State<SignUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
+                      'Username',
+                      style: TextStyle(color: Colors.grey.shade600),
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.text,
+                      controller: _userName,
+                      decoration: InputDecoration(
+                        hintStyle: const TextStyle(
+                          color: Colors.black,
+                        ),
+                        contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide: BorderSide(color: Colors.grey.shade200),
+                        ),
+                        alignLabelWithHint: false,
+                        hintText: 'Enter your preferred username',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 25.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10.0,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Phone',
+                      style: TextStyle(color: Colors.grey.shade600),
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.phone,
+                      controller: _phone,
+                      decoration: InputDecoration(
+                        hintStyle: const TextStyle(
+                          color: Colors.black,
+                        ),
+                        contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderSide: BorderSide(color: Colors.grey.shade200),
+                        ),
+                        alignLabelWithHint: false,
+                        hintText: '08012345678',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 25.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10.0,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
                       'Email',
                       style: TextStyle(color: Colors.grey.shade600),
                     ),
@@ -129,13 +215,15 @@ class _SignUpPageState extends State<SignUpPage> {
                       height: 10.0,
                     ),
                     TextField(
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.text,
                       controller: _password,
+                      obscuringCharacter: '*',
+                      obscureText: true,
                       decoration: InputDecoration(
                         hintStyle: const TextStyle(
                           color: Colors.black,
                         ),
-                        contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0),
                           // borderSide: BorderSide(color: Colors.grey.shade50),
@@ -171,7 +259,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ],
               ),
               const SizedBox(
-                height: 290.0,
+                height: 100.0,
               ),
               GestureDetector(
                 onTap: () async {
@@ -182,6 +270,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       email: email,
                       password: password,
                     );
+
                     AuthService.firebase().sendEmailVerification();
                     Navigator.of(context)
                         .pushNamedAndRemoveUntil(verifyRoute, (route) => false);

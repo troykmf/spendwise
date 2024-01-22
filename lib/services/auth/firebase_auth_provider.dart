@@ -4,6 +4,7 @@ import 'package:spendwise/services/auth/auth_user.dart';
 import 'package:spendwise/services/auth/auth_exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthProvider implements AuthProvider {
   // create user
@@ -129,5 +130,20 @@ class FirebaseAuthProvider implements AuthProvider {
     } catch (_) {
       throw GenericAuthException();
     }
+  }
+
+  @override
+  Future<void> googleSignIn(
+      {required String idToken, required String accessToken}) async {
+    final gUser = await GoogleSignIn().signIn;
+
+    // final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+
+    // final credential = GoogleAuthProvider.credential(
+    //   accessToken: gAuth.accessToken,
+    //   idToken: gAuth.idToken,
+    // );
+
+    // return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }

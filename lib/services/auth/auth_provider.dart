@@ -21,6 +21,11 @@ abstract class AuthProvider {
 
   Future<void> sendResetPassword({required String toEmail});
 
+  Future<void> googleSignIn({
+    required String idToken,
+    required String accessToken,
+  });
+
   // Future<void> initializeNotification();
   //
   // Future<void> sendNotification();

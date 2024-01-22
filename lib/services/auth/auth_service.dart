@@ -39,4 +39,12 @@ class AuthService implements AuthProvider {
   @override
   Future<void> sendResetPassword({required String toEmail}) =>
       provider.sendResetPassword(toEmail: toEmail);
+
+  @override
+  Future<void> googleSignIn(
+          {required String idToken, required String accessToken}) =>
+      provider.googleSignIn(
+        idToken: idToken,
+        accessToken: accessToken,
+      );
 }

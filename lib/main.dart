@@ -58,11 +58,8 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           fontFamily: 'Roboto',
-          // // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          // useMaterial3: true,
-          primarySwatch: Colors.teal,
+          primarySwatch: Colors.grey,
         ),
-        initialRoute: splashRoute,
         routes: {
           loginRoute: (context) => const LoginPage(),
           signupRoute: (context) => const SignUpPage(),
@@ -75,8 +72,9 @@ class MyApp extends StatelessWidget {
           budgetTwoFabRoute: (context) => const BudgetTwoFabPage(),
           splashRoute: (context) => const SplashPage(),
           homeMainRoute: (context) => const HomeMain(),
+          bottomNavigationRoute: (context) => const BottomNavBar(),
         },
-        home: const HomeMain(),
+        home: const SplashPage(),
       ),
     );
 

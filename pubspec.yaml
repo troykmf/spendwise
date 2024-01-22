@@ -45,6 +45,10 @@ dependencies:
   fab_circular_menu: ^1.0.2
   firebase_messaging: ^14.7.1
   firebase_core: ^2.19.0
+  google_sign_in: ^6.1.6
+  font_awesome_flutter: ^10.6.0
+  uuid: ^4.2.2
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spendwise/services/budget_firebase/budget_item_two.dart';
 import 'package:spendwise/services/budget_firebase/firebase_budget_storage_two.dart';
 import 'package:spendwise/core/constants/route.dart';
-import 'package:spendwise/src/transaction_details/budget_list_view.dart';
+import 'package:spendwise/src/listview_bulder/budget_list_view.dart';
 
 class BudgetTab extends StatelessWidget {
   BudgetTab({super.key, required this.userId});
