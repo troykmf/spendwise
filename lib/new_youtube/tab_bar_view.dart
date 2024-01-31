@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:spendwise/new_youtube/transaction_list.dart';
 
 class TypeTabBar extends StatelessWidget {
-  TypeTabBar({super.key, required this.catgeory, required this.monthyear});
+  const TypeTabBar(
+      {super.key, required this.catgeory, required this.monthyear});
 
   final String catgeory;
   final String monthyear;
@@ -14,13 +15,13 @@ class TypeTabBar extends StatelessWidget {
         length: 2,
         child: Column(
           children: [
-            TabBar(
+            const TabBar(
               tabs: [
                 Tab(
-                  text: 'credit',
+                  text: 'budget',
                 ),
                 Tab(
-                  text: 'debit',
+                  text: 'expenses',
                 )
               ],
             ),

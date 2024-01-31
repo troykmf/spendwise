@@ -3,6 +3,7 @@ import 'package:spendwise/core/constants/route.dart';
 import 'package:spendwise/services/auth/auth_exceptions.dart';
 import 'package:spendwise/services/auth/auth_service.dart';
 import 'package:spendwise/core/utilities/dialogs/error_dialog.dart';
+import 'package:spendwise/new_youtube/database.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -35,12 +36,19 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
+  final database = Db();
+
   Future<void> _submitForm() async {
     var data = {
       'userName': _userName.text,
       'email': _email.text,
       'phone': _phone.text,
+      'remainingAmount': 0,
+      'totalCredit': 0,
+      'totalDebit': 0,
     };
+
+    await database.addUsers(data, context);
   }
 
   @override
@@ -103,7 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   children: [
                     Text(
                       'Username',
-                      style: TextStyle(color: Colors.grey.shade600),
+                      style: TextStyle(color: Colors.black),
                     ),
                     const SizedBox(
                       height: 10.0,
@@ -112,8 +120,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       keyboardType: TextInputType.text,
                       controller: _userName,
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(
-                          color: Colors.black,
+                        hintStyle: TextStyle(
+                          color: Colors.grey[600],
                         ),
                         contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         border: OutlineInputBorder(
@@ -139,7 +147,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   children: [
                     Text(
                       'Phone',
-                      style: TextStyle(color: Colors.grey.shade600),
+                      style: TextStyle(color: Colors.black),
                     ),
                     const SizedBox(
                       height: 10.0,
@@ -148,8 +156,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       keyboardType: TextInputType.phone,
                       controller: _phone,
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(
-                          color: Colors.black,
+                        hintStyle: TextStyle(
+                          color: Colors.grey[600],
                         ),
                         contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         border: OutlineInputBorder(
@@ -157,7 +165,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           borderSide: BorderSide(color: Colors.grey.shade200),
                         ),
                         alignLabelWithHint: false,
-                        hintText: '08012345678',
+                        hintText: 'e.g 08012345678',
                       ),
                     ),
                   ],
@@ -175,7 +183,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   children: [
                     Text(
                       'Email',
-                      style: TextStyle(color: Colors.grey.shade600),
+                      style: TextStyle(color: Colors.black),
                     ),
                     const SizedBox(
                       height: 10.0,
@@ -184,8 +192,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       keyboardType: TextInputType.emailAddress,
                       controller: _email,
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(
-                          color: Colors.black,
+                        hintStyle: TextStyle(
+                          color: Colors.grey[600],
                         ),
                         contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         border: OutlineInputBorder(
@@ -209,7 +217,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   children: [
                     const Text(
                       'Password',
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Colors.black),
                     ),
                     const SizedBox(
                       height: 10.0,
@@ -220,13 +228,13 @@ class _SignUpPageState extends State<SignUpPage> {
                       obscuringCharacter: '*',
                       obscureText: true,
                       decoration: InputDecoration(
-                        hintStyle: const TextStyle(
-                          color: Colors.black,
+                        hintStyle: TextStyle(
+                          color: Colors.grey[600],
                         ),
                         contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15.0),
-                          // borderSide: BorderSide(color: Colors.grey.shade50),
+                          borderSide: BorderSide(color: Colors.grey.shade200),
                         ),
                         alignLabelWithHint: false,
                         hintText: 'Enter your password',
@@ -272,6 +280,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     );
 
                     AuthService.firebase().sendEmailVerification();
+                    _submitForm();
                     Navigator.of(context)
                         .pushNamedAndRemoveUntil(verifyRoute, (route) => false);
                   } on WeakPasswordAuthException {

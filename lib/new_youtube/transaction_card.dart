@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:spendwise/new_youtube/app_icons.dart';
 // import 'package:spendwise/services/auth/auth_service.dart';
-import 'package:spendwise/src/tabs/transactions_card.dart';
+import 'package:spendwise/new_youtube/transactions_card.dart';
 
 class TransactionCard extends StatelessWidget {
   TransactionCard({super.key});

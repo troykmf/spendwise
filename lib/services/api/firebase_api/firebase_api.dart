@@ -1,8 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
 
 // class FirebaseApi {
 //   final _firebaseMessaging = FirebaseMessaging.instance;
@@ -30,7 +27,7 @@ class FirebasePushNotificationApi {
       sound: true,
     );
 
-    RemoteMessage message = RemoteMessage();
+    RemoteMessage message = const RemoteMessage();
     print('User grnated permission: ${settings.authorizationStatus}');
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
@@ -51,31 +48,4 @@ class FirebasePushNotificationApi {
 
     print('Handling a background message: ${message.messageId}');
   }
-}
-
-class AuthService2 {
-  final CollectionReference addUser =
-      FirebaseFirestore.instance.collection('addUser');
-
-  Future<void> addUsers(data, context) async {
-    final userId = FirebaseAuth.instance.currentUser!.uid;
-    await addUser
-        .doc(userId)
-        .set(data)
-        .then((value) => print('user Added'))
-        .catchError((error) {
-      return showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('Sign up failer error'),
-              content: Text(error.toString()),
-            );
-          });
-    });
-  }
-
-  // Stream<DocumentSnapshot> getDOc() {
-  //   await addUser.doc().get().snapshot;
-  // }
 }

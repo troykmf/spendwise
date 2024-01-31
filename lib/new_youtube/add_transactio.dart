@@ -24,12 +24,6 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
   final db = Db();
 
   Future<void> _submitForm() async {
-    var data = {
-      'remainingAmount': 0,
-      'totalCredit': 0,
-      'totalDebit': 0,
-    };
-    await db.addUsers(data, context);
     final user = FirebaseAuth.instance.currentUser;
     int timestamp = DateTime.now().millisecondsSinceEpoch;
     var amount = int.parse(amountTextEditingController.text);

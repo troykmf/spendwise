@@ -81,7 +81,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
                 builder: (context, snapshot) {
                   // show loading
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Text('Waiting for data');
+                    return const Text('Waiting for data');
                   }
                   // get the budgets
                   final budget = snapshot.data!.docs;

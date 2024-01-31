@@ -19,36 +19,40 @@ class _TransanctionScreenState extends State<TransanctionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Expansive'),
+        title: const Text(
+          'Expansive',
+        ),
       ),
-      body: Column(
-        children: [
-          TimeLineMonth(
-            onchnaged: (String? value) {
-              if (value != null) {
-                setState(() {
-                  monthyear = value;
-                });
-              }
-            },
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          CatgoryList(
-            onchnaged: (String? value) {
-              if (value != null) {
-                setState(() {
-                  category = value;
-                });
-              }
-            },
-          ),
-          TypeTabBar(
-            catgeory: category,
-            monthyear: monthyear,
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            TimeLineMonth(
+              onchnaged: (String? value) {
+                if (value != null) {
+                  setState(() {
+                    monthyear = value;
+                  });
+                }
+              },
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            CatgoryList(
+              onchnaged: (String? value) {
+                if (value != null) {
+                  setState(() {
+                    category = value;
+                  });
+                }
+              },
+            ),
+            TypeTabBar(
+              catgeory: category,
+              monthyear: monthyear,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -113,7 +117,7 @@ class _TimeLineMonthState extends State<TimeLineMonth> {
             },
             child: Container(
               width: 80,
-              margin: EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: currentMonth == months[index]
                     ? Colors.blue

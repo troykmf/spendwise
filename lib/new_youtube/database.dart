@@ -17,7 +17,7 @@ class Db {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text('Sign up failer error'),
+              title: const Text('Sign up failer error'),
               content: Text(error.toString()),
             );
           });
@@ -26,19 +26,4 @@ class Db {
 
   Stream<DocumentSnapshot> getDoc({required String userId}) =>
       users.doc(userId).snapshots();
-}
-
-class FirebaseDatabase {
-  final CollectionReference spendData =
-      FirebaseFirestore.instance.collection('user');
-
-  Future<void> addData({required String title, required String amount}) async {
-    await spendData.add({
-      'title': title,
-      'amount': amount,
-      'totalBalance': 0,
-      'totalExpense': 0,
-      'totalBudget': 0,
-    });
-  }
 }

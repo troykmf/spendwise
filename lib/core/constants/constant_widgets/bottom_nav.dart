@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:spendwise/new_youtube/my_form.dart';
@@ -59,7 +58,7 @@ class NavBar extends StatelessWidget {
           label: 'Home',
         ),
         NavigationDestination(
-          icon: Icon(FontAwesomeIcons.barChart),
+          icon: Icon(FontAwesomeIcons.solidChartBar),
           label: 'Summary',
         ),
         NavigationDestination(

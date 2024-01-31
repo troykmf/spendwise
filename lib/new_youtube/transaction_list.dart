@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:spendwise/src/tabs/transactions_card.dart';
+import 'package:spendwise/new_youtube/transactions_card.dart';
 
 class TransactionList extends StatelessWidget {
   TransactionList(
@@ -21,7 +21,7 @@ class TransactionList extends StatelessWidget {
         .doc(userId)
         .collection('transaction')
         .orderBy('timestamp', descending: false)
-        .where('mpnthyear', isEqualTo: monthyear)
+        .where('monthyear', isEqualTo: monthyear)
         .where('type', isEqualTo: type);
 
     if (category != 'All') {
@@ -42,7 +42,7 @@ class TransactionList extends StatelessWidget {
           return ListView.builder(
             shrinkWrap: true,
             itemCount: data.length,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               var cardData = data[index];
               return TransactionsCard(

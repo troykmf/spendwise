@@ -47,7 +47,8 @@ class TransactionsCard extends StatelessWidget {
               // child: Center(
               //   child: FaIcon(
               //     appIcon.getExpenseCategoryIcons(
-              //       '${data['category']}',
+              //       // '${data['category']}',
+              //       'Grocery',
               //     ),
               //     color: data['type'] == 'credit' ? Colors.green : Colors.red,
               //   ),

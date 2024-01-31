@@ -9,6 +9,7 @@ import 'package:spendwise/core/constants/route.dart';
 import 'package:spendwise/new_youtube/add_transactio.dart';
 import 'package:spendwise/new_youtube/app_icons.dart';
 import 'package:spendwise/new_youtube/database.dart';
+import 'package:spendwise/new_youtube/scrn/profile_page.dart';
 import 'package:spendwise/new_youtube/transaction_card.dart';
 import 'package:spendwise/services/models/budgets/budget_data.dart';
 import 'package:spendwise/services/models/budgets/budget_item.dart';
@@ -173,6 +174,22 @@ class _HomePageState extends State<HomePage> {
                     Navigator.of(context).pushNamed(summaryRoute);
                   },
                   text: 'Summary Page',
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                AppButton(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProfilePage(
+                          userId: userId,
+                        ),
+                      ),
+                    );
+                  },
+                  text: 'Profile',
                 ),
                 const Spacer(),
                 Center(

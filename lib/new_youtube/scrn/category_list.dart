@@ -60,8 +60,8 @@ class _CatgoryListState extends State<CatgoryList> {
             },
             child: Container(
               // width: 100,
-              margin: EdgeInsets.all(8),
-              padding: EdgeInsets.only(left: 10, right: 10),
+              margin: const EdgeInsets.all(8),
+              padding: const EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
                 color: currentCategory == data['name']
                     ? Colors.blue.shade900
