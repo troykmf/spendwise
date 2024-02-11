@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:spendwise/new_youtube/app_icons.dart';
+import 'package:spendwise/new_youtube/database.dart';
 // import 'package:spendwise/services/auth/auth_service.dart';
 import 'package:spendwise/new_youtube/transactions_card.dart';
 
@@ -36,6 +38,7 @@ class RecentTransactionList extends StatelessWidget {
 
   // final userId = AuthService.firebase().currentUser!.id;
   final userId = FirebaseAuth.instance.currentUser!.uid;
+  final db = Db();
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +65,23 @@ class RecentTransactionList extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               var cardData = data[index];
-              return TransactionsCard(
-                data: cardData,
+              return Slidable(
+                endActionPane: ActionPane(
+                  motion: const StretchMotion(),
+                  children: [
+                    SlidableAction(
+                      onPressed: (onPressed) {
+                        db.deleteDoc(userId: userId);
+                      },
+                      icon: Icons.delete,
+                      backgroundColor: Colors.red,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ],
+                ),
+                child: TransactionsCard(
+                  data: cardData,
+                ),
               );
             },
           );

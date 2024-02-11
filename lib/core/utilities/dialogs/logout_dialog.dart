@@ -3,8 +3,7 @@ import 'package:spendwise/core/constants/route.dart';
 import 'package:spendwise/services/auth/auth_service.dart';
 import 'package:spendwise/core/utilities/dialogs/generic_dialog.dart';
 
-Future<void> logoutDialog(
-    BuildContext context, String text, Function() onPressed) {
+Future<void> logoutDialog(BuildContext context) {
   return showGenericDialog(
       context: context,
       title: 'Log out',
@@ -18,5 +17,7 @@ Future<void> logoutDialog(
               );
             },
             'cancel': null,
-          });
+          }).then(
+    (value) => value ?? false,
+  );
 }

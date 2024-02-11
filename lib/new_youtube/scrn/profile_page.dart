@@ -43,7 +43,9 @@ class ProfilePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                             icon: Icon(
                               Icons.arrow_back,
                             ),

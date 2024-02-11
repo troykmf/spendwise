@@ -9,7 +9,6 @@ class HiveDatabase {
     List<List<dynamic>> allBudgetFormatted = [];
     for (var budget in allBudget) {
       List<dynamic> budgetFormatted = [
-        budget.title,
         budget.amount,
         budget.datetime,
       ];
@@ -23,13 +22,11 @@ class HiveDatabase {
     List savedBudgets = _myBox.get('ALL_BUDGET') ?? [];
     List<BudgetItem> allBudget = [];
     for (int i = 0; i < savedBudgets.length; i++) {
-      String title = savedBudgets[i][0];
       String amount = savedBudgets[i][1];
       DateTime dateTime = savedBudgets[i][2];
 
       // create budget item
       BudgetItem budget = BudgetItem(
-        title: title,
         amount: amount,
         datetime: dateTime,
       );

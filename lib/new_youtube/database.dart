@@ -26,4 +26,8 @@ class Db {
 
   Stream<DocumentSnapshot> getDoc({required String userId}) =>
       users.doc(userId).snapshots();
+
+  Future<void> deleteDoc({required String userId}) async {
+    await users.doc(userId).collection('transaction').doc(userId).delete();
+  }
 }

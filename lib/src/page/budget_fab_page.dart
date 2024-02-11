@@ -25,7 +25,6 @@ class _BudgetFabPageState extends State<BudgetFabPage> {
   void save() {
     if (_titleController.text.isNotEmpty && _amountController.text.isNotEmpty) {
       BudgetItem newBudget = BudgetItem(
-        title: _titleController.text,
         amount: _amountController.text,
         datetime: DateTime.now(),
       );

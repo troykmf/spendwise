@@ -2,9 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:spendwise/new_youtube/app_icons.dart';
 import 'package:spendwise/new_youtube/categorydropdown.dart';
 import 'package:spendwise/new_youtube/database.dart';
+import 'package:spendwise/services/models/budgets/budget_data.dart';
+import 'package:spendwise/services/models/budgets/budget_item.dart';
 import 'package:uuid/uuid.dart';
 
 class AddTransactionForm extends StatefulWidget {
@@ -22,6 +25,15 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
   var category = 'Others';
   var uid = const Uuid();
   final db = Db();
+
+  void save() {
+    BudgetItem newBudget = BudgetItem(
+      amount: amountTextEditingController.text,
+      datetime: DateTime.now(),
+    );
+
+    Provider.of<BudgetData>(context, listen: false).addNewBudget(newBudget);
+  }
 
   Future<void> _submitForm() async {
     final user = FirebaseAuth.instance.currentUser;
@@ -75,9 +87,9 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
         .collection('transaction')
         .doc(id)
         .set(anotherData);
-
-    Navigator.pop(context);
   }
+
+  void cancel() => Navigator.of(context).pop();
 
   @override
   Widget build(BuildContext context) {
@@ -122,11 +134,44 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
                 });
               },
             ),
-            ElevatedButton(
-              onPressed: () {
-                _submitForm();
-              },
-              child: const Text('Save'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    elevation: 3.0,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 8.0),
+                  ),
+                  onPressed: () {
+                    if (titleTextEditingController.text.isNotEmpty &&
+                        amountTextEditingController.text.isNotEmpty) {
+                      _submitForm();
+                      save();
+
+                      Navigator.pop(context);
+                    } else {
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: const Text('Save'),
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    elevation: 3.0,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 8.0),
+                  ),
+                  onPressed: () {
+                    cancel();
+                  },
+                  child: const Text('Cancel'),
+                ),
+              ],
             ),
           ],
         ),

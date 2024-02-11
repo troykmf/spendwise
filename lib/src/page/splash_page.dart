@@ -16,7 +16,7 @@ class _SplashPageState extends State<SplashPage> {
     Timer(
       const Duration(seconds: 10),
       () => Navigator.of(context).pushNamedAndRemoveUntil(
-        homeMainRoute,
+        onBoardingRoute,
         (route) => false,
       ),
     );
@@ -36,7 +36,9 @@ class _SplashPageState extends State<SplashPage> {
           colors: [AppColor.whiteColor, AppColor.blueColor],
         ),
       ),
-      child: Center(
+      child: Container(
+        height: 150,
+        width: 150,
         child: Image.network(
           'https://img.freepik.com/free-vector/pay-balance-owed-abstract-concept-illustration-making-credit-payment-pay-owed-money-bank-irs-balance-due-debt-consolidation-management-taxpayer-bill_335657-1236.jpg?size=626&ext=jpg&ga=GA1.1.236206376.1670018423&semt=ais',
         ),

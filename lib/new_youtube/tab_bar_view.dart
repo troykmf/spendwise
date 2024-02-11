@@ -25,19 +25,27 @@ class TypeTabBar extends StatelessWidget {
                 )
               ],
             ),
+            // Expanded(
+            //     child: TabBarView(children: [
+            //   Text('credit'),
+            //   Text('debit'),
+            // ]))
             Expanded(
-                child: TabBarView(children: [
-              TransactionList(
-                category: catgeory,
-                type: 'credit',
-                monthyear: monthyear,
+              child: TabBarView(
+                children: [
+                  TransactionList(
+                    category: catgeory,
+                    type: 'credit',
+                    monthyear: monthyear,
+                  ),
+                  TransactionList(
+                    category: catgeory,
+                    type: 'debit',
+                    monthyear: monthyear,
+                  ),
+                ],
               ),
-              TransactionList(
-                category: catgeory,
-                type: 'debit',
-                monthyear: monthyear,
-              ),
-            ]))
+            ),
           ],
         ),
       ),

@@ -10,3 +10,4 @@ const budgetTwoFabRoute = '/budget_two_fab/';
 const splashRoute = '/splash/';
 const homeMainRoute = '/home_main/';
 const bottomNavigationRoute = '/bottom_navigation/';
+const onBoardingRoute = '/onbaording/';

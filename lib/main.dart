@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:spendwise/core/constants/constant_widgets/bottom_nav.dart';
+import 'package:spendwise/src/onboarding/onboarding_main.dart';
 import 'package:spendwise/src/page/splash_page.dart';
 import 'package:spendwise/core/constants/route.dart';
 import 'package:spendwise/services/models/budgets/budget_data.dart';
@@ -73,6 +74,7 @@ class MyApp extends StatelessWidget {
           splashRoute: (context) => const SplashPage(),
           homeMainRoute: (context) => const HomeMain(),
           bottomNavigationRoute: (context) => const BottomNavBar(),
+          onBoardingRoute: (context) => const OnboardingMain(),
         },
         home: const SplashPage(),
       ),

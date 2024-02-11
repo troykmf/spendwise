@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:spendwise/core/constants/constant_widgets/apptextfield.dart';
+import 'package:spendwise/core/constants/menu_action.dart';
 import 'package:spendwise/core/constants/route.dart';
 import 'package:spendwise/new_youtube/add_transactio.dart';
 import 'package:spendwise/new_youtube/app_icons.dart';
@@ -15,10 +16,9 @@ import 'package:spendwise/services/models/budgets/budget_data.dart';
 import 'package:spendwise/services/models/budgets/budget_item.dart';
 import 'package:spendwise/src/tabs/budget_tab.dart';
 import 'package:spendwise/src/tabs/expense_tab.dart';
-import 'package:spendwise/services/auth/auth_exceptions.dart';
 import 'package:spendwise/services/auth/auth_service.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
-import 'package:spendwise/core/utilities/dialogs/error_dialog.dart';
+import 'package:spendwise/core/utilities/dialogs/logout_dialog.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -149,7 +149,8 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.black,
           width: 230.0,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -195,20 +196,7 @@ class _HomePageState extends State<HomePage> {
                 Center(
                   child: AppButton(
                     onTap: () async {
-                      try {
-                        await AuthService.firebase().logOut();
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          loginRoute,
-                          (route) => false,
-                        );
-                      } on UserNotLoggedInAuthException {
-                        await showErrorDialog(
-                          context,
-                          'User not logged in',
-                        );
-                      } catch (_) {
-                        throw GenericAuthException();
-                      }
+                      await logoutDialog(context);
                     },
                     text: 'Logout',
                   ),
@@ -308,7 +296,7 @@ class _HomePageState extends State<HomePage> {
                                 const SizedBox(height: 10),
                                 // Text("${dAta['remainingAmount']}")
                                 Text(
-                                  "${dAta['remainingAmount']}",
+                                  "#${dAta['remainingAmount']}",
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -362,7 +350,7 @@ class _HomePageState extends State<HomePage> {
                                         // hereeeeeeeeeeeeeeeeeeeeeeee
 
                                         Text(
-                                          "${dAta['totalCredit']}",
+                                          "#${dAta['totalCredit']}",
                                           style: const TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -417,7 +405,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         const SizedBox(height: 10),
                                         Text(
-                                          "${dAta['totalDebit']}",
+                                          "#${dAta['totalDebit']}",
                                           style: const TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
