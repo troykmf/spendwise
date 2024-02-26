@@ -19,11 +19,18 @@ import 'package:spendwise/src/page/summary_page.dart';
 import 'package:spendwise/src/page/verify_page.dart';
 import 'package:spendwise/services/api/firebase_api/firebase_api.dart';
 import 'package:spendwise/services/auth/auth_service.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
+
+  final appDocDir = await getApplicationDocumentsDirectory();
+
+  final path = appDocDir.path;
+
+  Hive.init(path);
 
   await Hive.openBox("budget_database");
 

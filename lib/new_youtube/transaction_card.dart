@@ -71,7 +71,8 @@ class RecentTransactionList extends StatelessWidget {
                   children: [
                     SlidableAction(
                       onPressed: (onPressed) {
-                        db.deleteDoc(userId: userId);
+                        db.deleteForm();
+                        // db.deleteDoc(userId: userId);
                       },
                       icon: Icons.delete,
                       backgroundColor: Colors.red,

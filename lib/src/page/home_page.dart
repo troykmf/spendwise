@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:spendwise/core/constants/constant_widgets/apptextfield.dart';
-import 'package:spendwise/core/constants/menu_action.dart';
 import 'package:spendwise/core/constants/route.dart';
 import 'package:spendwise/new_youtube/add_transactio.dart';
 import 'package:spendwise/new_youtube/app_icons.dart';
@@ -14,7 +13,7 @@ import 'package:spendwise/new_youtube/scrn/profile_page.dart';
 import 'package:spendwise/new_youtube/transaction_card.dart';
 import 'package:spendwise/services/models/budgets/budget_data.dart';
 import 'package:spendwise/services/models/budgets/budget_item.dart';
-import 'package:spendwise/src/tabs/budget_tab.dart';
+// import 'package:spendwise/src/tabs/budget_tab.dart';
 import 'package:spendwise/src/tabs/expense_tab.dart';
 import 'package:spendwise/services/auth/auth_service.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
@@ -71,7 +70,7 @@ class _HomePageState extends State<HomePage> {
     final userStream = db.getDoc(userId: userId);
     // final _screenWidth = MediaQuery.of(context).size.width;
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         key: _scaffoldKey,
         backgroundColor: Colors.grey.shade50,
@@ -111,13 +110,13 @@ class _HomePageState extends State<HomePage> {
                   Icons.add,
                 ),
               ),
-              RawMaterialButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(budgetFabRoute);
-                },
-                shape: const CircleBorder(),
-                child: const Icon(Icons.money),
-              ),
+              // RawMaterialButton(
+              //   onPressed: () {
+              //     Navigator.of(context).pushNamed(budgetFabRoute);
+              //   },
+              //   shape: const CircleBorder(),
+              //   child: const Icon(Icons.money),
+              // ),
               // RawMaterialButton(
               //   onPressed: () {
               //     Navigator.of(context).push(MaterialPageRoute(
@@ -436,12 +435,12 @@ class _HomePageState extends State<HomePage> {
                           //     color: Colors.blue,
                           //   ),
                           // ),
-                          Tab(
-                            icon: Icon(
-                              Icons.money,
-                              color: Colors.black,
-                            ),
-                          ),
+                          // Tab(
+                          //   icon: Icon(
+                          //     Icons.money,
+                          //     color: Colors.black,
+                          //   ),
+                          // ),
                           Tab(
                             icon: Icon(
                               FontAwesomeIcons.cartShopping,
@@ -462,7 +461,7 @@ class _HomePageState extends State<HomePage> {
                             ExpenseTab(userId: userId),
 
                             // 3rd tab
-                            BudgetTab(userId: userId),
+                            // BudgetTab(userId: userId),
                           ],
                         ),
                       ),

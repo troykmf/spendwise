@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:spendwise/new_youtube/app_icons.dart';
 import 'package:spendwise/new_youtube/categorydropdown.dart';
 import 'package:spendwise/new_youtube/database.dart';
+import 'package:spendwise/services/auth/auth_service.dart';
 import 'package:spendwise/services/models/budgets/budget_data.dart';
 import 'package:spendwise/services/models/budgets/budget_item.dart';
 import 'package:uuid/uuid.dart';
@@ -134,6 +135,7 @@ class _AddTransactionFormState extends State<AddTransactionForm> {
                 });
               },
             ),
+            const SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,

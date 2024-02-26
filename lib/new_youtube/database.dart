@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:spendwise/services/auth/auth_service.dart';
+import 'package:uuid/uuid.dart';
+
 // import 'package:spendwise/services/auth/auth_service.dart';
 
 class Db {
@@ -27,7 +30,20 @@ class Db {
   Stream<DocumentSnapshot> getDoc({required String userId}) =>
       users.doc(userId).snapshots();
 
-  Future<void> deleteDoc({required String userId}) async {
-    await users.doc(userId).collection('transaction').doc(userId).delete();
+  // Future<void> deleteDoc({required String userId}) async {
+  //   await users.doc(userId).collection('transaction').doc(userId).delete();
+  // }
+
+  Future<void> deleteForm() async {
+    final user = AuthService.firebase().currentUser;
+    var uid = const Uuid();
+    var id = uid.v4();
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.id)
+        .collection('transaction')
+        .doc(id)
+        .delete();
   }
 }

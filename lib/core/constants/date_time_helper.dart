@@ -15,3 +15,12 @@ String convertDateTimeToString(DateTime dateTime) {
 
   return ddmmyyyy;
 }
+
+// calculate the number of month since the first start month
+
+int calculateMonthCount(int startYear, startMonth, currentYear, currentMonth) {
+  int monthCount =
+      (currentYear - startYear) * 12 + currentMonth - startMonth + 1;
+
+  return monthCount;
+}

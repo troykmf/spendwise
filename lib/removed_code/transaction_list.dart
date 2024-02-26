@@ -8,12 +8,12 @@ class TransactionList extends StatelessWidget {
       {super.key,
       required this.category,
       required this.type,
-      required this.monthyear});
+      required this.monthYear});
 
   final userId = FirebaseAuth.instance.currentUser!.uid;
   final String category;
   final String type;
-  final String monthyear;
+  final String monthYear;
   @override
   Widget build(BuildContext context) {
     Query query = FirebaseFirestore.instance
@@ -21,7 +21,7 @@ class TransactionList extends StatelessWidget {
         .doc(userId)
         .collection('transaction')
         .orderBy('timestamp', descending: false)
-        .where('monthyear', isEqualTo: monthyear)
+        .where('monthyear', isEqualTo: monthYear)
         .where('type', isEqualTo: type);
 
     if (category != 'All') {

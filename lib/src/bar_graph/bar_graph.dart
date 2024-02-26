@@ -37,34 +37,57 @@ class MyBarGraph extends StatelessWidget {
 
     myBarData.initializeBarData();
 
-    return BarChart(
-      BarChartData(
-        barGroups: myBarData.barData
-            .map(
-              (data) => BarChartGroupData(
-                x: data.x,
-                barRods: [
-                  BarChartRodData(
-                    toY: data.y,
-                    color: Colors.grey[800],
-                    width: 25,
-                    backDrawRodData: BackgroundBarChartRodData(
-                      show: true,
-                      toY: maxY,
-                      color: Colors.grey[200],
-                    ),
-                  )
-                ],
-              ),
-            )
-            .toList(),
+    double barWidth = 20;
+    double spaceBetweenBars = 15;
+    return SizedBox(
+      width: barWidth * myBarData.barData.length,
+      child: BarChart(
+        BarChartData(
+          minY: 0,
+          maxY: maxY,
+          gridData: const FlGridData(show: true),
+          borderData: FlBorderData(show: true),
+          titlesData: FlTitlesData(
+            show: true,
+            topTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: true)),
+            leftTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: true)),
+            rightTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: true)),
+            bottomTitles: AxisTitles(
+                sideTitles: SideTitles(
+              showTitles: true,
+              getTitlesWidget: getBottomTitles,
+            )),
+          ),
+          barGroups: myBarData.barData
+              .map(
+                (data) => BarChartGroupData(
+                  x: data.x,
+                  barRods: [
+                    BarChartRodData(
+                      toY: data.y,
+                      color: Colors.grey[800],
+                      width: 20,
+                      backDrawRodData: BackgroundBarChartRodData(
+                        show: true,
+                        toY: maxY,
+                        color: Colors.grey[200],
+                      ),
+                    )
+                  ],
+                ),
+              )
+              .toList(),
+        ),
       ),
     );
   }
 
   Widget getBottomTitles(double value, TitleMeta meta) {
     const style = TextStyle(
-      color: Colors.grey,
+      color: Colors.black,
       fontWeight: FontWeight.bold,
       fontSize: 14,
     );

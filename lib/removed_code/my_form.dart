@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:spendwise/new_youtube/scrn/category_list.dart';
-import 'package:spendwise/new_youtube/tab_bar_view.dart';
+import 'package:spendwise/core/constants/route.dart';
+import 'package:spendwise/new_youtube/new_stuff/new_tab_bar_view.dart';
+import 'package:spendwise/removed_code/category_list.dart';
+import 'package:spendwise/removed_code/tab_bar_view.dart';
 
 class TransanctionScreen extends StatefulWidget {
   TransanctionScreen({super.key});
@@ -21,6 +23,12 @@ class _TransanctionScreenState extends State<TransanctionScreen> {
       appBar: AppBar(
         title: const Text(
           'Expansive',
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed(homeRoute);
+          },
+          icon: Icon(Icons.arrow_back),
         ),
       ),
       body: SingleChildScrollView(
@@ -45,12 +53,12 @@ class _TransanctionScreenState extends State<TransanctionScreen> {
                     category = value;
                   });
                 }
+
               },
             ),
-            TypeTabBar(
-              catgeory: category,
-              monthyear: monthyear,
-            ),
+            // NewTabBarView(),
+            TypeTabBar(category: category, monthyear: monthyear,),
+
           ],
         ),
       ),

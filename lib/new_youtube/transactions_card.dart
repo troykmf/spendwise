@@ -26,8 +26,8 @@ class TransactionsCard extends StatelessWidget {
                   offset: const Offset(0, 10),
                   color: Colors.grey.withOpacity(0.09),
                   blurRadius: 10.0,
-                  spreadRadius: 4.0)
-            ]),
+                  spreadRadius: 4.0,),
+            ],),
         child: ListTile(
           minVerticalPadding: 10,
           contentPadding:
